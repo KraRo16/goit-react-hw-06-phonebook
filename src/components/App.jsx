@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import { Filter } from './Filter/Filter';
 import ContactForm from './ContactForm/ContactForm';
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
     );
   });
 
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -33,15 +33,15 @@ export default function App() {
       : setContacts([contact, ...contacts]);
   };
 
-  const onFilterInput = e => {
-    setFilter(e.currentTarget.value);
-  };
+  // const onFilterInput = e => {
+  //   setFilter(e.currentTarget.value);
+  // };
 
-  const onFilterChange = () => {
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
+  // const onFilterChange = () => {
+  //   return contacts.filter(({ name }) =>
+  //     name.toLowerCase().includes(Filter.toLowerCase())
+  //   );
+  // };
 
   const onDeleteContactClick = id => {
     setContacts(contacts.filter(i => i.id !== id));
@@ -51,10 +51,10 @@ export default function App() {
     <>
       <h1>Phonebook</h1>
       <ContactForm onSubmitForm={onSubmitForm} />
-      <Filter value={filter} onFilter={onFilterInput} />
+      <Filter />
       <h2>Contacts</h2>
       <ContactList
-        contacts={onFilterChange()}
+        // contacts={onFilterChange()}
         onDeleteClick={onDeleteContactClick}
       />
     </>

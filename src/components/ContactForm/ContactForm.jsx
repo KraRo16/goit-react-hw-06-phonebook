@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContacts } from 'redux/contacts/contactsSlice';
+import { nanoid } from 'nanoid';
 
-export default function ContactForm({ onSubmitForm }) {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const dispatch = useDispatch();
+
   const onSubmit = e => {
     e.preventDefault();
-    onSubmitForm({ name, number });
+    const contact = { name, number, id: nanoid() };
+    dispatch(addContacts(contact));
     formReset();
   };
 
@@ -55,8 +61,10 @@ export default function ContactForm({ onSubmitForm }) {
       </button>
     </form>
   );
-}
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
 };
+
+export default ContactForm;
+
+// ContactForm.propTypes = {
+//   onSubmitForm: PropTypes.func.isRequired,
+// };
