@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { filter } from 'redux/filter/filterSlice';
 import { getFilter } from 'redux/filter/filter-selectors';

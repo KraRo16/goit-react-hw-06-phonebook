@@ -16,8 +16,6 @@ export default function App() {
     );
   });
 
-  // const [filter, setFilter] = useState('');
-
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -33,16 +31,6 @@ export default function App() {
       : setContacts([contact, ...contacts]);
   };
 
-  // const onFilterInput = e => {
-  //   setFilter(e.currentTarget.value);
-  // };
-
-  // const onFilterChange = () => {
-  //   return contacts.filter(({ name }) =>
-  //     name.toLowerCase().includes(Filter.toLowerCase())
-  //   );
-  // };
-
   const onDeleteContactClick = id => {
     setContacts(contacts.filter(i => i.id !== id));
   };
@@ -53,10 +41,7 @@ export default function App() {
       <ContactForm onSubmitForm={onSubmitForm} />
       <Filter />
       <h2>Contacts</h2>
-      <ContactList
-        // contacts={onFilterChange()}
-        onDeleteClick={onDeleteContactClick}
-      />
+      <ContactList onDeleteClick={onDeleteContactClick} />
     </>
   );
 }
